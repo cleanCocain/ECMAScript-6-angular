@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M"
+    crossorigin="anonymous">
+
+  <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+  <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
+  <link href="css/bootstrap-theme.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body ng-app="app">
+  <div ng-controller="Mycontroller as ctrl" ng-init="ctrl.init()">
+    <h2>Create Data:</h2>
+
+    <form class="form-horizontal" name="myForm">
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="email">ID:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="id" name="id" ng-model="ctrl.id" placeholder="Enter the id" required>
+          <span class="error" ng-show="myForm.model.id.$error.number">
+            Not valid number!</span>
+        </div>
+
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="name">Name:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="name" name="name" ng-model="ctrl.name" placeholder="Enter name">
+        </div>
+        <!-- <span>{{ctrl.name}}</span> -->
+      </div>
+
+      <div class="form-group">
+        <label class="control-label col-sm-2" for="country">Country:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="country" name="country" ng-model="ctrl.country" placeholder="Enter country">
+        </div>
+      </div>
+
+
+      <div class="form-group" name="myForm">
+        <label class="control-label col-sm-2" for="email">Email:</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" id="email" name="email" ng-model="ctrl.email" placeholder="Enter email" required>
+
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="submit" class="btn btn-default" ng-click="ctrl.saveUser()">Save</button>
+        </div>
+      </div>
+    </form>
+
+    <table class="table table-striped">
+      <thead>
+        <th>id</th>
+        <th>name</th>
+        <th>country</th>
+        <th>email</th>
+
+      </thead>
+      <tbody>
+        <tr ng-repeat="x in ctrl.tableData">
+          <td>{{x.id}}</td>
+          <td>{{x.name}}</td>
+          <td>{{x.country}}</td>
+          <td>{{x.email}}</td>
+          <td>
+            <a class="btn btn-success" ng-click="ctrl.editUser(ctrl.tableData.indexOf(x))">Edit</a>
+            <a class="btn btn-danger" ng-click="ctrl.deleteUser(x.id)">Delete</a>
+          </td>
+        </tr>
+      </tbody>
+    </table><br>
+    <!-- <button ng-click="ctrl.getid()">click me LOL</button> -->
+
+    <!-- <p>{{ctrl.httpData}}</p> -->
+    <br>
+    <h2>Update Data:</h2>
+    
+        <form class="form-horizontal" name="myForm">
+    
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="email">ID:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="id" name="id" ng-model="ctrl.idu"  readonly>
+              <span class="error" ng-show="myForm.model.id.$error.number">
+                Not valid number!</span>
+            </div>
+    
+          </div>
+    
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="name">Name:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="name" name="name" ng-model="ctrl.nameu" placeholder="Enter name">
+            </div>
+            <!-- <span>{{ctrl.name}}</span> -->
+          </div>
+    
+          <div class="form-group">
+            <label class="control-label col-sm-2" for="country">Country:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="country" name="country" ng-model="ctrl.countryu" placeholder="Enter country">
+            </div>
+          </div>
+    
+    
+          <div class="form-group" name="myForm">
+            <label class="control-label col-sm-2" for="email">Email:</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="email" name="email" ng-model="ctrl.emailu" placeholder="Enter email" required>
+    
+            </div>
+          </div>
+    
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default" ng-click="ctrl.updateUser()">Update</button>
+            </div>
+          </div>
+        </form><br>
+    <p>{{ctrl.tableData}}</p>
+
+  </div>
+
+</body>
+<script src="build/app.bundle.js"></script>
+
+</html>
