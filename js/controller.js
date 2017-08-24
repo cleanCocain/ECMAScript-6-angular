@@ -1,4 +1,10 @@
 
+let HTTP = new WeakMap();
+let id = new WeakMap();
+let name = new WeakMap();
+let country = new WeakMap();
+let email = new WeakMap();
+
 
 class Mycontroller {
 
@@ -6,7 +12,7 @@ class Mycontroller {
         // super(id,name,country,email);
         // alert('Hello!');
         
-        this.$http = $http;
+        HTTP.set(this, $http);
         this.$scope = $scope;
         this.chkdata();
         this.fieldData();
@@ -14,10 +20,10 @@ class Mycontroller {
     }
 
     fieldData() {
-        this.id = null;
-        this.name = null;
-        this.country = null;
-        this.email = null;  
+        id.set(this,id);
+        name.set(this,name);
+        country.set(this,country);
+        email.set(this,email);
     }
     fieldUpdateData() {
         this.idu;
@@ -63,7 +69,7 @@ class Mycontroller {
         // var result = [];
         // let result = {id:'',name:'',country:'',email:''};
         let result = [];
-        this.$http.get(myURL).then(responce => {
+        HTTP.get(this).get(myURL).then(responce => {
 
             result = responce.data;
 
@@ -83,20 +89,20 @@ class Mycontroller {
     }
 
     saveUser(){
-        this.fieldData();
-        let body = `id=${this.id}&name=${this.name}&country=${this.country}
-        &email=${this.email}`;
+        // this.fieldData();
+        let body = `id=${id.get(this)}&name=${name.get(this)}&country=${country.get(this)}
+        &email=${email.get(this)}`;
 
-        this.$http.post(`http://localhost:1337/user/create?${body}`).then(data =>{
+        HTTP.get(this).post(`http://localhost:1337/user/create?${body}`).then(data =>{
             alert('data added');this.init();}).catch(data =>{
                 alert('error');});
         ;
 
         console.log(body);
-        console.log(this.id);
-        console.log(this.name);
-        console.log(this.country);
-        console.log(this.email);
+        // console.log(id.get(this));
+        // console.log(name.get(this));
+        // console.log(id.get(this));
+        // console.log(id.get(this));
       
     }
 
@@ -115,7 +121,7 @@ class Mycontroller {
         let body = `${this.idu}?name=${this.nameu}&country=${this.countryu}
         &email=${this.emailu}`;
 
-        this.$http.post(`http://localhost:1337/user/update/${body}`).then(data =>{
+        HTTP.get(this).post(`http://localhost:1337/user/update/${body}`).then(data =>{
             alert('data updated');this.init();}).catch(data =>{
                 alert('error');});
         ;
@@ -135,7 +141,7 @@ class Mycontroller {
 
     deleteUser(index){
         console.log(index); 
-        this.$http.delete(`http://localhost:1337/user?id=${index}`).then(data =>{
+        HTTP.get(this).delete(`http://localhost:1337/user?id=${index}`).then(data =>{
             alert('Successfully Deleted');
             this.init();
         }).catch(data =>{
