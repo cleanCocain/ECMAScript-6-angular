@@ -1,10 +1,5 @@
 
 let HTTP = new WeakMap();
-let id = new WeakMap();
-let name = new WeakMap();
-let country = new WeakMap();
-let email = new WeakMap();
-
 
 class Mycontroller {
 
@@ -20,10 +15,10 @@ class Mycontroller {
     }
 
     fieldData() {
-        id.set(this,id);
-        name.set(this,name);
-        country.set(this,country);
-        email.set(this,email);
+        this.id;
+        this.name;
+        this.country;
+        this.email;  
     }
     fieldUpdateData() {
         this.idu;
@@ -89,9 +84,9 @@ class Mycontroller {
     }
 
     saveUser(){
-        // this.fieldData();
-        let body = `id=${id.get(this)}&name=${name.get(this)}&country=${country.get(this)}
-        &email=${email.get(this)}`;
+        this.fieldData();
+        let body = `id=${this.id}&name=${this.name}&country=${this.country}
+        &email=${this.email}`;
 
         HTTP.get(this).post(`http://localhost:1337/user/create?${body}`).then(data =>{
             alert('data added');this.init();}).catch(data =>{
@@ -99,10 +94,10 @@ class Mycontroller {
         ;
 
         console.log(body);
-        // console.log(id.get(this));
-        // console.log(name.get(this));
-        // console.log(id.get(this));
-        // console.log(id.get(this));
+        console.log(this.id);
+        console.log(this.name);
+        console.log(this.country);
+        console.log(this.email);
       
     }
 
