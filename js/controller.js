@@ -1,7 +1,9 @@
 import User_Data from './user_data';
 
 
+
 let HTTP = new WeakMap();
+let result = [];
 
 class Mycontroller {
 
@@ -47,47 +49,62 @@ class Mycontroller {
     }
 
 
-
     init() {
 
         const myURL = 'http://localhost:1337/user';
 
         // var result = [];
         // let result = {id:'',name:'',country:'',email:''};
-        let result = [];
         HTTP.get(this).get(myURL).then(responce => {
 
             result = responce.data;
 
-  
+            // users.forEach(element => {
+
+            // result.push(element);
+            // console.log(str);
+            // console.log(count);
+            // });
+            // console.log(result);
             this.httpData = JSON.stringify(result);
             this.tableData = result;
 
         });
+
         console.log(result);
         
+        
     }
-
+    
     saveUser(){
         this.fieldData();
-        let body = `id=${this.id}&name=${this.name}&country=${this.country}
-        &email=${this.email}`;
+        // if(this.id  || this.name || this.country|| this.email ){
 
-        HTTP.get(this).post(`http://localhost:1337/user/create?${body}`).then(data =>{
-            alert('data added');this.init();}).catch(data =>{
-                alert('error');});
-        ;
+        //     alert('some data missing please check fields.');
+        // }else{
+                let body = `id=${this.id}&name=${this.name}&country=${this.country}
+                &email=${this.email}`;
+        
+                HTTP.get(this).post(`http://localhost:1337/user/create?${body}`).then(data =>{
+                    alert('Data added successfully !');this.init();
+                    this.id = null;
+                    this.name = null;
+                    this.country = null;
+                    this.email = null;
+                
+                }).catch(data =>{
+                        });
+                ;
 
-        this.id = null;
-        this.name = null;
-        this.country = null;
-        this.email = null;
-
-        console.log(body);
-        console.log(this.id);
-        console.log(this.name);
-        console.log(this.country);
-        console.log(this.email);
+               
+        
+                // console.log(body);
+                console.log(this.id);
+                console.log(this.name);
+                console.log(this.country);
+                console.log(this.email);
+            // }
+  
       
     }
 
@@ -107,16 +124,19 @@ class Mycontroller {
         &email=${this.emailu}`;
 
         HTTP.get(this).post(`http://localhost:1337/user/update/${body}`).then(data =>{
-            alert('data updated');this.init();}).catch(data =>{
+            alert('data updated');this.init();
+
+            this.idu = null;
+            this.nameu = null;
+            this.countryu = null;
+            this.emailu = null;
+        
+        }).catch(data =>{
                 alert('error');});
         ;
 
         // this.fieldUpdateData();
-        this.idu = null;
-        this.nameu = null;
-        this.countryu = null;
-        this.emailu = null;
-
+    
         console.log(body);
         console.log(this.idu);
         console.log(this.nameu);
