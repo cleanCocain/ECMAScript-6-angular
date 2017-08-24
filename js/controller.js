@@ -1,3 +1,5 @@
+import User_Data from './user_data';
+
 
 let HTTP = new WeakMap();
 
@@ -12,7 +14,18 @@ class Mycontroller {
         this.chkdata();
         this.fieldData();
         this.fieldUpdateData();
+        // this.test();
     }
+
+    // test(){
+    //     this.fieldData();
+    //     let obj = new User_Data();
+    //     obj.setID(this.id);
+    //     obj.setName(this.name);
+    //     obj.setCountry(this.country);
+    //     obj.setEmail(this.email);
+    //     alert(`${obj.getID}\n${obj.getName}\n${obj.getCountry}\n${obj.getEmail}\n`);
+    // }
 
     fieldData() {
         this.id;
@@ -21,6 +34,7 @@ class Mycontroller {
         this.email;  
     }
     fieldUpdateData() {
+        
         this.idu;
         this.nameu;
         this.countryu;
@@ -32,30 +46,7 @@ class Mycontroller {
         this.tableData = [];
     }
 
-    // getid() {
 
-    //     const myURL = 'http://localhost:1337/user';
-    //     var str = [];
-    //     let count = 0;
-    //     this.$http.get(myURL).then(responce => responce.data)
-    //         .then(users => {
-
-    //             users.forEach(element => {
-    //                 count++;
-    //                 str.push(element);
-    //                 // console.log(str);
-    //                 // console.log(count);
-    //             });
-    //             // console.log(str);
-    //             str = this.data;
-    //             return this.data;
-
-    //         });
-
-
-    //     // alert(str); 
-    //     alert(str);
-    // }
 
     init() {
 
@@ -68,13 +59,7 @@ class Mycontroller {
 
             result = responce.data;
 
-            // users.forEach(element => {
-
-            // result.push(element);
-            // console.log(str);
-            // console.log(count);
-            // });
-            // console.log(result);
+  
             this.httpData = JSON.stringify(result);
             this.tableData = result;
 
@@ -92,6 +77,11 @@ class Mycontroller {
             alert('data added');this.init();}).catch(data =>{
                 alert('error');});
         ;
+
+        this.id = null;
+        this.name = null;
+        this.country = null;
+        this.email = null;
 
         console.log(body);
         console.log(this.id);
@@ -127,11 +117,11 @@ class Mycontroller {
         this.countryu = null;
         this.emailu = null;
 
-        // console.log(body);
-        // console.log(this.idu);
-        // console.log(this.nameu);
-        // console.log(this.countryu);
-        // console.log(this.emailu);
+        console.log(body);
+        console.log(this.idu);
+        console.log(this.nameu);
+        console.log(this.countryu);
+        console.log(this.emailu);
     }
 
     deleteUser(index){
